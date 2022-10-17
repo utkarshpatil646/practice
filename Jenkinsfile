@@ -17,7 +17,7 @@ pipeline {
 
         stage ('cloning the git repository') {
             steps {
-                sh 'cd /mnt/project/utkarsh && rm -rf* && git clone https://github.com/utkarshpatil646/game-of-life.git'
+                sh 'cd /mnt/project/utkarsh && rm -rf * && git clone https://github.com/utkarshpatil646/game-of-life.git'
             }
         }
         stage ('building the application') {
