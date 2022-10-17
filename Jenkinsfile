@@ -28,7 +28,7 @@ pipeline {
         }
         stage ('starting a container') {
             steps {
-                sh 'systemctl start docker"
+                sh 'systemctl start docker'
                 sh 'docker run -itdp 8081:8080 --name Utkarsh tomcat:9'
             }
         }
