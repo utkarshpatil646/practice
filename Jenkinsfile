@@ -37,18 +37,26 @@ pipeline {
             }
         }
         stage ('Making new directories') {
-                steps {
-                    sh 'cd /mnt/project/practice2 && rm -rf * && mkdir 22Q2 22Q3'
+            steps {
+                    sh 'cd /mnt/project/practice2 && rm -rf * && mkdir 22Q1 22Q2 22Q3'
                 }
             }
-            stage ('Clear all the directories') {
-                steps {
+        stage ('Clear all the directories') {
+            steps {
+                    sh 'cd /mnt/project/practice2/22Q1 && rm -rf *'
                     sh 'cd /mnt/project/practice2/22Q2 && rm -rf *'
                     sh 'cd /mnt/project/practice2/22Q3 && rm -rf *'
                 }
             }
-            stage ('Pulling the rpeo 22Q2 & 22Q3') {
+        stage ('Cleaning the previous contaniner and adding new one') {
             steps {
+                sh 'docker stop 22Q1 22Q2 22Q3'
+                sh 'docker rm 22Q1 22Q2 22Q3'
+                }
+            }
+        stage ('Pulling the rpeo 22Q1, 22Q2 & 22Q3') {
+            steps {
+                sh 'cd /mnt/project/practice2/22Q1 && git init && git remote add origin https://github.com/utkarshpatil646/practice.git && git pull origin 22Q1'
                 sh 'cd /mnt/project/practice2/22Q2 && git init && git remote add origin https://github.com/utkarshpatil646/practice.git && git pull origin 22Q2'
                 sh 'cd /mnt/project/practice2/22Q3 && git init && git remote add origin https://github.com/utkarshpatil646/practice.git && git pull origin 22Q3'
             }
