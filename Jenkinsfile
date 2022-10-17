@@ -22,7 +22,7 @@ pipeline {
         stage ('building the application') {
             steps {
                 sh 'rm -rf /.m2/repository'
-                sh 'cd /mnt/project/utkarsh/game-of-life/ && mvn install'
+                sh 'cd /mnt/project/utkarsh/practice && mvn install'
             }
         }
         stage ('starting a container') {
@@ -33,7 +33,7 @@ pipeline {
         }
         stage ('deploying gameoflife.war in container') {
             steps {
-                sh 'docker cp /mnt/project/utkarsh/game-of-life/gameoflife-web/target/gameoflife.war Utkarsh:/usr/local/tomcat/webapps/'
+                sh 'docker cp /mnt/project/utkarsh/practice/gameoflife-web/target/gameoflife.war Utkarsh:/usr/local/tomcat/webapps/'
             }
         }
         stage ('Making new directories') {
