@@ -44,6 +44,12 @@ pipeline {
                 sh 'systemctl start docker'
             }
         }
+        stage ('Cleaning the previous contaniner and adding new one') {
+            steps {
+                sh 'docker stop 22Q1 22Q2 22Q3'
+                sh 'docker rm 22Q1 22Q2 22Q3'
+            }
+        }
         stage ('Installing Httpd Server for 22Q1, 22Q2 and 22Q3 branches') {
             steps {
                 sh 'docker pull httpd'
