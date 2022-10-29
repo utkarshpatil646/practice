@@ -8,7 +8,6 @@ pipeline {
         maven "maven 3.8.6"
     }
     stages {
-        stage ("unziiping the ")
         stage ("Intializing git repo and Pulling the Repo") {
             steps {
                 sh "cd /mnt/project/ && git init && git pull https://github.com/utkarshpatil646/practice.git"
