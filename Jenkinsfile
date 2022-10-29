@@ -15,7 +15,7 @@ pipeline {
             }
         }
         agent {
-            label {'Dev A')
+            label {'dev')
         }
         
         stage ("Starting docker and Building the game of life in master") {
