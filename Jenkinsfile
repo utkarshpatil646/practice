@@ -17,9 +17,7 @@ pipeline {
 	             agent {
 		                    label '10.10.1.167' 
 	                         }
-			steps{
-			   dir('/mnt')
-            steps {
+			steps {
                 sh "sudo systemctl docker start"
                 sh "cd /mnt/project/practice && mvn clean install"
             }
