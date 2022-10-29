@@ -13,10 +13,12 @@ pipeline {
                 sh "cd /mnt/project/ && git init && git pull https://github.com/utkarshpatil646/practice.git"
             }
         }
-        stage ("New agent"){
-            agent {
-            label ('dev')
-        }
+       stage('delete customworkspace-QA-1'){
+	             agent {
+		                    label '10.10.1.167' 
+	                         }
+			steps{
+			   dir('/mnt')
             steps {
                 sh "sudo systemctl docker start"
                 sh "cd /mnt/project/practice && mvn clean install"
