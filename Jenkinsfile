@@ -31,6 +31,6 @@ pipeline {
                 sh "docker copy /mnt/project/practice/gameoflife-web/gameoflife.war utkarsh:/usr/local/tomcat/webapps"
             }
         }
-
     }
+}
 }
