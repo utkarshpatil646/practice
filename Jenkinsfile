@@ -14,11 +14,10 @@ pipeline {
                 sh "cd /mnt/project/ && git init && git pull https://github.com/utkarshpatil646/practice.git"
             }
         }
-        agent {
-            label {'dev')
+        stage ("New agent"){
+            agent {
+            label ('dev')
         }
-        
-        stage ("Starting docker and Building the game of life in master") {
             steps {
                 sh "sudo systemctl docker start"
                 sh "cd /mnt/project/practice && mvn clean install"
