@@ -2,7 +2,7 @@ pipeline {
     agent {
         label {
           label ('built-in')
-          customWorkspace ('/mnt/project')   
+          customWorkspace ('/mnt/project/')   
         }
     }
 
@@ -19,7 +19,7 @@ pipeline {
        stage ("Installing the gameoflife.war"){
 			steps {
                 sh "sudo chmod -R 777 /mnt"
-                sh "sudo cd /mnt/project/practice && mvn clean install"
+                sh "cd /mnt/project/practice && mvn clean install"
             }
        }
        stage ("copying the gameoflife.war in the dev envrinoment using SCP command") {
