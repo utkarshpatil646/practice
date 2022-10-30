@@ -26,7 +26,7 @@ pipeline {
             steps {
                 sh "sudo chmod -R 777 /mnt"
                 sh "sudo cp /mnt/project/practice/gameoflife-web/target/gameoflife.war /mnt" 
-                sh "sudo cd /mnt && sudo scp gameoflife.war ansible@20.10.1.254:/mnt"
+                sh "sudo cd /mnt && scp gameoflife.war ansible@20.10.1.254:/mnt"
             }
        }
        stage ("Starting up docker on slave Dev-a") {
