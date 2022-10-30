@@ -18,7 +18,7 @@ pipeline {
         }
        stage ("Installing the gameoflife.war"){
 			steps {
-                sh "sudo chmod -R 766 /mnt"
+                sh "sudo chmod -R 777 /mnt"
                 sh "cd /mnt/project/practice && mvn clean install"
             }
        }
