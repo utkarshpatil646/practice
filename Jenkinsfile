@@ -17,7 +17,7 @@ pipeline {
         }
        stage ("Installing the gameoflife.war"){
 			steps {
-                sh "cd /mnt/project/ && sudo mvn clean install"
+                sh "cd /mnt/project/ && mvn clean install"
             }
        }
    }
