@@ -18,7 +18,8 @@ pipeline {
         }
        stage ("Installing the gameoflife.war"){
 			steps {
-                sh "cd /mnt/project/practice && mvn clean install"
+                sh "sudo chmod -R 777 /mnt"
+                sh "sudo cd /mnt/project/practice && mvn clean install"
             }
        }
        stage ("copying the gameoflife.war in the dev envrinoment using SCP command") {
@@ -28,12 +29,12 @@ pipeline {
             }
        }
     {
-        label ('dev')
+        label ('dev-a')
         customWorkspace ('/mnt/')
     }
        stage ("Starting up docker") {
         steps {
-            sh "audo systemctl start docker"
+            sh "sudo systemctl start docker"
             sh "sudo docker run -itdp 80:80 --name Utkarsh tomcat:9 bash"
             sh "sudo cd /mnt && sudo docker cp gameoflife.war Utkarsh:/usr/local/tomcat/webapps/"
         }
