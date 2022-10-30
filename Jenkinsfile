@@ -24,6 +24,7 @@ pipeline {
        }
        stage ("copying the gameoflife.war in the dev envrinoment using SCP command") {
             steps {
+                sh "sudo chmod -R 777 /mnt"
                 sh "sudo cd /mnt/project/gameoflife-web/target/gameoflife.war /mnt"
                 sh "sudo cd /mnt && sudo scp gameoflife.war ansible@20.10.1.254:/mnt"
             }
