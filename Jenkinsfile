@@ -12,12 +12,13 @@ pipeline {
     stages {
         stage ("Intializing git repo and Pulling the Repo") {
             steps {
-                sh "cd /mnt/project/ && sudo git init && sudo git pull https://github.com/utkarshpatil646/practice.git"
+                sh "sudo rm -rf cd /mnt/project/*"
+                sh "cd /mnt/project/ && sudo git clone https://github.com/utkarshpatil646/practice.git"
             }
         }
        stage ("Installing the gameoflife.war"){
 			steps {
-                sh "cd /mnt/project/practice && sudo mvn clean install"
+                sh "cd /mnt/project/practice && mvn clean install"
             }
        }
        stage ("copying the gameoflife.war in the dev envrinoment using SCP command") {
@@ -32,7 +33,7 @@ pipeline {
     }
        stage ("Starting up docker") {
         steps {
-            sh "sudo systemctl start docker"
+            sh "audo systemctl start docker"
             sh "sudo docker run -itdp 80:80 --name Utkarsh tomcat:9 bash"
             sh "sudo cd /mnt && sudo docker cp gameoflife.war Utkarsh:/usr/local/tomcat/webapps/"
         }
