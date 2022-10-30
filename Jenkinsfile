@@ -1,16 +1,16 @@
 pipeline {
-    agent {
-        label {
-          label ('built-in')
-          customWorkspace ('/mnt/project/')   
-        }
-    }
-
+    agent none
     tools {
         maven "maven 3.8.6"
     }
     stages {
         stage ("Intializing git repo and Pulling the Repo") {
+            agent {
+                label {
+                    label ('built-in')
+                    customWorkspace ('/mnt/proect/')
+                }
+            }
             steps {
                 sh "sudo rm -rf cd /mnt/project/*"
                 sh "cd /mnt/project/ && sudo git clone https://github.com/utkarshpatil646/practice.git"
@@ -29,11 +29,13 @@ pipeline {
                 sh "sudo cd /mnt && sudo scp gameoflife.war ansible@20.10.1.254:/mnt"
             }
        }
-    {
-        label ('dev-a')
-        customWorkspace ('/mnt/')
-    }
-       stage ("Starting up docker") {
+       stage ("Starting up docker on slave Dev-a") {
+        agent {
+            label {
+                label ('dev-a')
+                customWorkspace ('/mnt')
+            }
+        }
         steps {
             sh "sudo systemctl start docker"
             sh "sudo docker run -itdp 80:80 --name Utkarsh tomcat:9 bash"
