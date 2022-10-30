@@ -15,18 +15,18 @@ pipeline {
         }
        stage('delete customworkspace-QA-1'){
 	             agent {
-		                    label '10.10.1.167' 
-	                         }
+                    label ('20.20.1.254')
+                    }
 			steps {
-                sh "sudo systemctl docker start"
-                sh "cd /mnt/project/practice && mvn clean install"
+                sh "sudo systemctl start docker"
+                sh "cd /mnt/project/practice && sudo mvn clean install"
             }
         }
 
         stage ("starting the docker container and deploying game of life in it") {
             steps {
-                sh "docker run -itdp 8081:8080 -name utkarsh tomcat:9"
-                sh "docker copy /mnt/project/practice/gameoflife-web/gameoflife.war utkarsh:/usr/local/tomcat/webapps"
+                sh "sudo docker run -itdp 8081:8080 -name utkarsh tomcat:9"
+                sh "sudo docker cp /mnt/project/practice/gameoflife-web/gameoflife.war utkarsh:/usr/local/tomcat/webapps"
             }
         }
     }
