@@ -8,7 +8,7 @@ pipeline {
             agent {
                 label {
                     label ('built-in')
-                    customWorkspace ('/mnt/proect/')
+                    customWorkspace ('/mnt/project/')
                 }
             }
             steps {
