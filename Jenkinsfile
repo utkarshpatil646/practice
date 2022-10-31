@@ -25,8 +25,7 @@ pipeline {
        stage ("copying the gameoflife.war in the dev envrinoment using SCP command") {
             steps {
                 sh "sudo chmod -R 777 /mnt"
-                sh "sudo cp /mnt/project/practice/gameoflife-web/target/gameoflife.war /mnt" 
-                sh "sudo cd /mnt && sudo scp gameoflife.war ansible@20.10.1.254:/mnt"
+                sh "sudo ansible-playbook copy.yaml"
             }
        }
        stage ("Starting up docker on slave Dev-a") {
@@ -38,8 +37,8 @@ pipeline {
           }
              steps {
                 sh "sudo systemctl start docker"
-                sh "sudo docker run -itdp 80:80 --name Utkarsh tomcat:9 bash"
-                sh "sudo cd /mnt && sudo docker cp gameoflife.war Utkarsh:/usr/local/tomcat/webapps/"
+                sh "sudo cd /mnt/slave && sudo docker build -t Utkarsh"
+                sh "sudo docker run -itd --name Utkarsh tomcat:9 bash"
             }
        }
    }
